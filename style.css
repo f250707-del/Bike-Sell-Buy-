@@ -1,0 +1,866 @@
+/* ============================================
+   GLOBAL STYLES & RESET
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #dc2626;
+    --secondary-color: #1f1f1f;
+    --accent-color: #ff4444;
+    --text-light: #f5f5f5;
+    --text-dark: #1a1a1a;
+    --bg-dark: #0a0a0a;
+    --bg-light: #ffffff;
+    --border-color: #333;
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ============================================
+   NAVIGATION BAR
+   ============================================ */
+.navbar {
+    background-color: rgba(10, 10, 10, 0.95);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    color: var(--text-light);
+    font-weight: 700;
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary-color);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-light);
+    transition: var(--transition);
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+    position: relative;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(220, 38, 38, 0.1) 0%, transparent 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+    animation: fadeInUp 1s ease;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero-title span {
+    color: var(--primary-color);
+}
+
+.hero-tagline {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: #ccc;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    background: url('../images/hero-bike.jpg') center/cover no-repeat;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn {
+    display: inline-block;
+    padding: 0.9rem 2rem;
+    border-radius: 5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+.btn-primary:hover {
+    background-color: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   FEATURED BIKES SECTION
+   ============================================ */
+.featured-bikes {
+    padding: 5rem 0;
+    background-color: var(--bg-dark);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.section-title span {
+    color: var(--primary-color);
+}
+
+.bikes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.bike-card {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+}
+
+.bike-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(220, 38, 38, 0.2);
+}
+
+.bike-card-image {
+    height: 250px;
+    overflow: hidden;
+    background-color: #111;
+}
+
+.bike-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.bike-card:hover .bike-card-image img {
+    transform: scale(1.1);
+}
+
+.bike-card-content {
+    padding: 1.5rem;
+}
+
+.bike-card-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-light);
+}
+
+.bike-card-content p {
+    color: #aaa;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.bike-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* ============================================
+   PAGE HEADER
+   ============================================ */
+.page-header {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+    padding: 4rem 0;
+    text-align: center;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.page-header h1 span {
+    color: var(--primary-color);
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: #aaa;
+}
+
+/* ============================================
+   BIKES CATALOGUE
+   ============================================ */
+.bikes-catalogue {
+    padding: 4rem 0;
+    min-height: 60vh;
+}
+
+/* ============================================
+   BIKE DETAILS PAGE
+   ============================================ */
+.bike-details {
+    padding: 3rem 0;
+    min-height: 70vh;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.back-btn:hover {
+    transform: translateX(-5px);
+}
+
+.details-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    background-color: var(--secondary-color);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.details-image {
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #111;
+}
+
+.details-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.details-info h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
+}
+
+.price-section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: rgba(220, 38, 38, 0.1);
+    border-radius: 5px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.price-label {
+    font-size: 1rem;
+    color: #aaa;
+    margin-right: 1rem;
+}
+
+.price-value {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.specs-section,
+.description-section {
+    margin-bottom: 2rem;
+}
+
+.specs-section h2,
+.description-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+.specs-list {
+    background-color: #111;
+    padding: 1.5rem;
+    border-radius: 5px;
+}
+
+.specs-list p {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+    color: #ccc;
+}
+
+.specs-list p:last-child {
+    border-bottom: none;
+}
+
+.description-section p {
+    color: #aaa;
+    line-height: 1.8;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.error-message {
+    text-align: center;
+    padding: 3rem;
+}
+
+.error-message h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* ============================================
+   ABOUT PAGE
+   ============================================ */
+.about-content {
+    padding: 4rem 0;
+}
+
+.about-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 4rem;
+    align-items: center;
+}
+
+.about-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.about-text h2 span {
+    color: var(--primary-color);
+}
+
+.about-text p {
+    color: #aaa;
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+.about-image {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.mission-section {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.mission-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.mission-section h2 span {
+    color: var(--primary-color);
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.mission-card {
+    background-color: var(--secondary-color);
+    padding: 2rem;
+    border-radius: 10px;
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+}
+
+.mission-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+.mission-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.mission-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+.mission-card p {
+    color: #aaa;
+    line-height: 1.6;
+}
+
+.team-section {
+    text-align: center;
+}
+
+.team-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.team-section h2 span {
+    color: var(--primary-color);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.team-card {
+    background-color: var(--secondary-color);
+    padding: 2rem;
+    border-radius: 10px;
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(220, 38, 38, 0.2);
+}
+
+.team-image {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--primary-color);
+}
+
+.team-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.team-role {
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.team-bio {
+    color: #aaa;
+    line-height: 1.6;
+}
+
+/* ============================================
+   CONTACT PAGE
+   ============================================ */
+.contact-section {
+    padding: 4rem 0;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+}
+
+.contact-form-wrapper h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-form {
+    background-color: var(--secondary-color);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #111;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(220, 38, 38, 0.2);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.error-text {
+    display: block;
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+}
+
+.success-message {
+    background-color: rgba(34, 197, 94, 0.1);
+    border: 2px solid #22c55e;
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.success-message h3 {
+    color: #22c55e;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.contact-info-sidebar h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-card {
+    background-color: var(--secondary-color);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.info-card:hover {
+    border-color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.info-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.info-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.info-content p {
+    color: #aaa;
+    line-height: 1.6;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+    background-color: #0a0a0a;
+    padding: 3rem 0 1rem;
+    border-top: 2px solid var(--primary-color);
+    margin-top: 4rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+.footer-section h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+}
+
+.footer-section p {
+    color: #aaa;
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+    color: #aaa;
+    transition: var(--transition);
+}
+
+.footer-section ul li a:hover {
+    color: var(--primary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-bottom p {
+    color: #666;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: rgba(10, 10, 10, 0.98);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 2rem 0;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-tagline {
+        font-size: 1rem;
+    }
+
+    .bikes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .details-container {
+        grid-template-columns: 1fr;
+    }
+
+    .about-section {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+}
